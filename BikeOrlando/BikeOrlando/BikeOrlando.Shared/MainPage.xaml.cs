@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,20 +31,69 @@ namespace BikeOrlando
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            // TODO: Prepare page for display here.
+		private void GoToOrlandoBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			MyMap.SetView(new BasicGeoposition() { Latitude = 28.4158, Longitude = -81.2989 }, 11);
+		}
 
-            // TODO: If your application contains multiple pages, ensure that you are
-            // handling the hardware Back button by registering for the
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-            // If you are using the NavigationHelper provided by some templates,
-            // this event is handled for you.
-        }
+		private void ToggleTrafficBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			var toggle = sender as AppBarToggleButton;
+
+			MyMap.ShowTraffic = toggle.IsChecked.HasValue && toggle.IsChecked.Value;
+		}
+
+		private void AddPushpinsBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			var locs = GetSamplePoints();
+
+			for (int i = 0; i < locs.Count; i++)
+			{
+				MyMap.AddPushpin(locs[i], (i + 1).ToString());
+			}
+		}
+
+		private void AddPolylineBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			var locs = GetSamplePoints();
+			MyMap.AddPolyline(locs, GetRandomColor(), 5);
+		}
+
+		private void AddPolygonBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			var locs = GetSamplePoints();
+			MyMap.AddPolygon(locs, GetRandomColor(), GetRandomColor(), 2);
+		}
+
+		private void ClearMapBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			MyMap.ClearMap();
+		}
+
+		private List<BasicGeoposition> GetSamplePoints()
+		{
+			var center = MyMap.Center.Position;
+
+			var rand = new Random();
+			center.Latitude += rand.NextDouble() * 0.05 - 0.025;
+			center.Longitude += rand.NextDouble() * 0.05 - 0.025;
+
+			var locs = new List<BasicGeoposition>();
+			locs.Add(new BasicGeoposition() { Latitude = center.Latitude - 0.05, Longitude = center.Longitude - 0.05 });
+			locs.Add(new BasicGeoposition() { Latitude = center.Latitude - 0.05, Longitude = center.Longitude + 0.05 });
+			locs.Add(new BasicGeoposition() { Latitude = center.Latitude + 0.05, Longitude = center.Longitude + 0.05 });
+			locs.Add(new BasicGeoposition() { Latitude = center.Latitude + 0.05, Longitude = center.Longitude - 0.05 });
+			return locs;
+		}
+
+		private Color GetRandomColor()
+		{
+			var rand = new Random();
+
+			byte[] bytes = new byte[3];
+			rand.NextBytes(bytes);
+
+			return Color.FromArgb(150, bytes[0], bytes[1], bytes[2]);
+		}
     }
 }

@@ -8,7 +8,50 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Go to Orlando" Click="GoToOrlandoBtn_Clicked">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE1C3;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
 
+                <AppBarToggleButton Label="Toggle Traffic" Click="ToggleTrafficBtn_Clicked">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon Glyph="&#xE0C3;"/>
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+
+                <AppBarButton Label="Add Pushpins" Click="AddPushpinsBtn_Clicked">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE141;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+
+                <AppBarButton Label="Add Polyline" Click="AddPolylineBtn_Clicked">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#x303D;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+
+                <AppBarButton Label="Add Polygon" Click="AddPolygonBtn_Clicked">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#x2B1F;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+
+                <AppBarButton Label="Clear Map" Click="ClearMapBtn_Clicked">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE107;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <local:MapView x:Name="MyMap" Credentials="YOUR_KEY" MapServiceToken="YOUR TOKEN" />
     </Grid>
+
 </Page>
