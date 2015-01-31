@@ -24,16 +24,31 @@ namespace BikeOrlando
     /// </summary>
     public sealed partial class MainPage : Page
     {
+		Geolocator geo = null;
+
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+			GoToCurrentLocation();
         }
 
-		private void GoToOrlandoBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private async void GoToCurrentLocation()
 		{
-			MyMap.SetView(new BasicGeoposition() { Latitude = 28.4158, Longitude = -81.2989 }, 11);
+			if (geo == null)
+			{
+				geo = new Geolocator();
+			}
+			Geoposition pos = await geo.GetGeopositionAsync();
+
+			MyMap.SetView(pos.Coordinate.Point.Position, 11);
+		}
+
+		private async void GoToMyLocationBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			GoToCurrentLocation();
 		}
 
 		private void ToggleTrafficBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)

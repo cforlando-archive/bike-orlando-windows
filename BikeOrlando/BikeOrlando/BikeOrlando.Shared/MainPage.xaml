@@ -11,7 +11,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Go to Orlando" Click="GoToOrlandoBtn_Clicked">
+                <AppBarButton Label="Go to My Location" Click="GoToMyLocationBtn_Clicked">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="&#xE1C3;"/>
                     </AppBarButton.Icon>
