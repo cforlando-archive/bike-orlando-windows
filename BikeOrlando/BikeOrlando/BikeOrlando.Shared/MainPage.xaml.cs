@@ -46,7 +46,7 @@ namespace BikeOrlando
 			MyMap.SetView(pos.Coordinate.Point.Position, 11);
 		}
 
-		private async void GoToMyLocationBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void GoToMyLocationBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			GoToCurrentLocation();
 		}
