@@ -51,7 +51,7 @@
     </Page.BottomAppBar>
 
     <Grid>
-        <local:MapView x:Name="MyMap" Credentials="YOUR_KEY" MapServiceToken="YOUR TOKEN" />
+        <local:MapView x:Name="MyMap" Credentials="AkHHS21Swnk_5xHSMyWnJLuhlv0-VcpZh3gPwXOXdmvcWZm_ArCxidlhogJSxF_p" MapServiceToken="YOUR TOKEN" />
     </Grid>
 
 </Page>
