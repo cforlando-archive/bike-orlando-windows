@@ -12,19 +12,38 @@
     <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)AlternatePage.xaml.cs">
+      <DependentUpon>AlternatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomMapView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MapView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\DataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IPlatformService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\MapTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PhonePlatformService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\WindowsPlatformService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AlternatePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)AlternatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)data\bike_lanes.json" />
+    <Content Include="$(MSBuildThisFileDirectory)data\bike_racks.json" />
   </ItemGroup>
 </Project>

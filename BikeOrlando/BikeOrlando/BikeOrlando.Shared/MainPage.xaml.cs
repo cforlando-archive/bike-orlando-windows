@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BikeOrlando.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,6 +45,8 @@ namespace BikeOrlando
 			Geoposition pos = await geo.GetGeopositionAsync();
 
 			MyMap.SetView(pos.Coordinate.Point.Position, 11);
+
+         
 		}
 
 		private void GoToMyLocationBtn_Clicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)

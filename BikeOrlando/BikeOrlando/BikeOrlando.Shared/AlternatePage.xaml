@@ -1,0 +1,36 @@
+﻿<Page xmlns:Maps="using:Bing.Maps" 
+    x:Class="BikeOrlando.AlternatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BikeOrlando"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid >
+        <local:CustomMapView x:Name="MyMap" Credentials="AkHHS21Swnk_5xHSMyWnJLuhlv0-VcpZh3gPwXOXdmvcWZm_ArCxidlhogJSxF_p" MapServiceToken="YOUR TOKEN" />
+
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Go to My Location" Click="GoToMyLocationBtn_Clicked" Icon="BackToWindow"/>
+
+                <AppBarToggleButton Label="Toggle Traffic" Click="ToggleTrafficBtn_Clicked">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon Glyph="&#xE0C3;"/>
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+                
+                <AppBarToggleButton Label="Lanes" Click="LoadLanesButton_Clicked" Icon="Street"/>
+                <AppBarToggleButton Label="Racks" Click="LoadRacksButton_Clicked" Icon="MapDrive"/>
+                <AppBarToggleButton Label="Parking" Click="LoadParkingButton_Clicked" Icon="MapPin"/>
+
+                <AppBarButton Label="Clear" Click="ClearMapBtn_Clicked" Icon="ClearSelection"/>
+
+
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
